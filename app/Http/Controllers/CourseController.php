@@ -21,7 +21,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'courses' => 'required|string|max:255|unique:courses,course',
+            'courses' => 'required|string|max:255|unique:courses,courses',
         ]);
     
         $course = Course::create($validatedData);
@@ -50,7 +50,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        $course->delete();
-        return response()->json('Deleted Successfully');
+        // $course->delete();
+        // return response()->json('Deleted Successfully');
     }
 }
