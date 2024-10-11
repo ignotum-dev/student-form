@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('student_number');
+            $table->string('student_number');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
