@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "c90bee1d-4a52-4265-9cbb-2bc4119e280b",
+		"name": "Courses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38551911",
+		"_collection_link": "https://www.postman.com/altimetry-cosmonaut-53771213/workspace/student-form/collection/38551911-c90bee1d-4a52-4265-9cbb-2bc4119e280b?action=share&source=collection_link&creator=38551911"
+	},
+	"item": [
+		{
+			"name": "Index Course",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "{{host/api}}/courses"
+			},
+			"response": []
+		},
+		{
+			"name": "Store Course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "{{host/api}}/courses"
+			},
+			"response": []
+		},
+		{
+			"name": "Show Course",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"courses\" : \"ACT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{host/api}}/courses/3"
+			},
+			"response": []
+		}
+	]
+}
