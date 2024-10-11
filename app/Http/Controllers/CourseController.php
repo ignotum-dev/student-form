@@ -12,7 +12,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Course::all());
     }
 
     /**
@@ -20,7 +20,13 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'courses' => 'required|string|max:255',
+        ]);
+    
+        $course = Course::create($validatedData);
+    
+        return response()->json($course, 201); 
     }
 
     /**
@@ -28,7 +34,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return response()->json($course, 200);
     }
 
     /**
@@ -44,6 +50,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return response()->json('Deleted Successfully');
     }
 }
