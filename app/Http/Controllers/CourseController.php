@@ -21,7 +21,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'courses' => 'required|string|max:255',
+            'courses' => 'required|string|max:255|unique:courses,course',
         ]);
     
         $course = Course::create($validatedData);
