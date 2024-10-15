@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -90,6 +95,11 @@ class StudentController extends Controller
         ]);
 
         $student->update($validatedData);
+
+        $user = $student->user;
+        $user->name = $validatedData['first_name'] . ' ' . $validatedData['middle_name'] . ' ' . $validatedData['last_name'];
+        $user->save();
+
         return response()->json($student, 200);
     }
 
