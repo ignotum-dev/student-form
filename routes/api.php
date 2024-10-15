@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('courses', CourseController::class)->except('update', 'destroy'); // can't edit, delete courses
 
 Route::apiResource('students', StudentController::class);
+
+Route::post('login', [AuthController::class, 'login']);
