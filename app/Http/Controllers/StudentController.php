@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -32,9 +34,32 @@ class StudentController extends Controller
             'sex' => 'required|in:Male,Female',
             'c_address' => 'required|string|max:255',
             'h_address' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',  // User email
+            'password' => 'required|string|min:8|confirmed', // Password confirmation
         ]);        
 
-        $student = Student::create($validatedData);
+        $user = User::create([
+            'name' => $validatedData['first_name'] . ' ' . $validatedData['last_name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
+
+        // Step 2: Create a Student linked to the User
+        $student = Student::create([
+            'user_id' => $user->id, // Link the student to the user
+            'student_number' => $validatedData['student_number'],
+            'first_name' => $validatedData['first_name'],
+            'middle_name' => $validatedData['middle_name'],
+            'last_name' => $validatedData['last_name'],
+            'course_id' => $validatedData['course_id'],
+            'year' => $validatedData['year'],
+            'dob' => $validatedData['dob'],
+            'age' => $validatedData['age'],
+            'sex' => $validatedData['sex'],
+            'c_address' => $validatedData['c_address'],
+            'h_address' => $validatedData['h_address'],
+        ]);
+
         return response()->json($student, 201);
     }
 
